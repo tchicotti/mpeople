@@ -1,0 +1,8 @@
+{
+  "name": "mpeople",
+  "app_id": "e9e08449",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
