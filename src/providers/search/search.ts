@@ -26,7 +26,7 @@ export class SearchProvider {
 
   search(pesquisa: Pesquisa) {
     if (pesquisa.nome.length > 0 || pesquisa.nomeMae.length > 0)
-      return this.getAll().filter(x => (pesquisa.nome.length > 0 && x.nome.indexOf(pesquisa.nome) != -1) || (pesquisa.nomeMae.length > 0 && x.nomeMae.indexOf(pesquisa.nomeMae) != -1))
+      return this.getAll().filter(x => (pesquisa.nome.length > 0 && x.nome.indexOf(pesquisa.nome) != -1) && (pesquisa.nomeMae.length > 0 && x.nomeMae.indexOf(pesquisa.nomeMae) != -1))
     return this.getAll()
   }
 }
