@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Lista de pessoas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      Consulta
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>Nome da Pessoa</ion-label>
+        <ion-input type="text" [(ngModel)]="form.nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Nome da Mãe</ion-label>
+        <ion-input type="text" [(ngModel)]="form.nomeMae"></ion-input>
+      </ion-item>
+      <button ion-button color="secondary" icon-start (click)="consultar(form)">
+        <ion-icon name="search"></ion-icon>
+         Procurar
+      </button>
+    </ion-card-content>
+  </ion-card>
+  <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+        <h2>{{item.nome}}</h2>
+        <p>Nome da mãe: {{item.nomeMae}}</p>
+    </ion-item>
+    <ion-item *ngIf="items.length == 0">
+      <i>Nenhum resultado encontrado.</i>
+    </ion-item>
+  </ion-list>
+</ion-content>
