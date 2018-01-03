@@ -12,7 +12,26 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SearchProvider } from '../providers/search/search';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { SoapServiceProvider } from '../providers/soap-service/soap-service';
+
+class StorageMock extends NativeStorage {
+  items = [];
+  getItem(key) {
+    return new Promise((resolve, reject) => {
+      let valueToReturn = this.items[key]
+      resolve(valueToReturn)
+    })
+  }
+
+  setItem(key, values) {
+    return new Promise((resolve, reject) => {
+      this.items[key] = values
+      resolve(true)
+    })
+
+  }
+}
 
 @NgModule({
   declarations: [
@@ -25,7 +44,6 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +58,9 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SearchProvider,
     HttpClientModule,
-    AuthServiceProvider
+    AuthServiceProvider,
+    {provide: NativeStorage, useClass: StorageMock},
+    SoapServiceProvider
   ]
 })
 export class AppModule {}

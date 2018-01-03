@@ -8,8 +8,42 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngIf="qrCode">
-    <ngx-qrcode [qrc-value]="qrCode"></ngx-qrcode>
-  </ion-card>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-row align-items-stretch>
+    <ion-col align-self-stretch>
+      <ion-item text-center>
+        <img src="{{ user.foto }}" class="img-max"/>
+      </ion-item>
+    </ion-col>
+    <ion-col align-self-stretch>
+      <ion-item text-center *ngIf="newCode">
+          <img src="{{ newCode }}" class="img-max"/>
+        </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item>
+          <h1>{{ user.nome }}</h1>
+          <small>{{ user.email }}</small>
+        </ion-item>
+        <ion-item>
+          <span>
+            Data de Nascimento: <p>{{ user.dataNascimento }}</p>
+          </span>
+        </ion-item>
+        <ion-item>
+          <span>
+            Idade: <p>{{ calcularIdade(user.dataNascimento) }}</p>
+          </span>
+        </ion-item>
+        <ion-item>
+          <span>Filiação:
+            <p *ngIf="user.filiacao.filiacao1">{{ user.filiacao.filiacao1 }}</p>
+            <p *ngIf="user.filiacao.filiacao2">{{ user.filiacao.filiacao2 }}</p>
+          </span>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
 </ion-content>

@@ -1,6 +1,6 @@
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,12 +14,12 @@ import { Pages } from '../interfaces/general/pages';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
   showLevel1 = null;
 
   pages: Array<Pages>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthServiceProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthServiceProvider, private menu: MenuController) {
     this.initializeApp();
 
     let docChildrens = [
@@ -51,6 +51,7 @@ export class MyApp {
   openPage(page: Pages) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    this.menu.close()
     if (page.command)
       this[page.command.methodName](page.command.methodParam)
     else if (page.component)
@@ -59,9 +60,9 @@ export class MyApp {
 
   toggleLevel1(idx) {
     if (this.isLevel1Shown(idx)) {
-      this.showLevel1 = null;
+      this.showLevel1 = null
     } else {
-      this.showLevel1 = idx;
+      this.showLevel1 = idx
     }
   };
 
