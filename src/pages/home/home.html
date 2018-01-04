@@ -11,7 +11,7 @@
   <ion-row align-items-stretch>
     <ion-col align-self-stretch text-center *ngIf="user.dadosCompletos.dados.Foto">
       <ion-item>
-        <img src="{{ baseImage + user.dadosCompletos.dados.Foto }}" class="img-max"/>
+        <img src="{{ url + user.dadosCompletos.dados.Foto }}" class="img-max" imageViewer/>
       </ion-item>
     </ion-col>
     <ion-col align-self-stretch>

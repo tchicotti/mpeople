@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Documentos de {{ user.nome }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-list-header class='list-header' *ngIf="user.dadosCompletos.documentos.CPF">CPF</ion-list-header>
+    <ion-item class="item">
+      <ion-avatar item-start *ngIf="user.dadosCompletos.documentos.CPF.Imagem">
+        <img src="{{ url + user.dadosCompletos.documentos.CPF.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+        <ion-col>Número: <p>{{ user.dadosCompletos.documentos.CPF.Numero }}</p></ion-col>
+        <ion-col>Data de Emissão: <p>{{ user.dadosCompletos.documentos.CPF.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="user.dadosCompletos.documentos.CERTIDAO.length > 0">Certidões</ion-list-header>
+    <ion-item class="item" *ngFor="let cert of user.dadosCompletos.documentos.CERTIDAO">
+      <ion-avatar item-start *ngIf="cert.Imagem">
+        <img src="{{ url + cert.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row *ngIf="cert.Matricula">
+        <ion-col *ngIf="cert.Tipo">Tipo: <p>{{ cert.Tipo }}</p></ion-col>
+        <ion-col *ngIf="cert.Matricula">Matrícula: <p>{{ cert.Matricula }}</p></ion-col>
+        <ion-col *ngIf="cert.Emissao">Data de Emissão: <p>{{ cert.Emissao }}</p></ion-col>
+      </ion-row>
+      <ion-row *ngIf="!cert.Matricula">
+        <ion-col *ngIf="cert.Tipo">Tipo: <p>{{ cert.Tipo }}</p></ion-col>
+        <ion-col *ngIf="cert.Cartorio">Cartório: <p>{{ cert.Cartorio }}</p></ion-col>
+        <ion-col *ngIf="cert.Numero">Número: <p>{{ cert.Numero }}</p></ion-col>
+        <ion-col *ngIf="cert.Folha">Folha: <p>{{ cert.Folha }}</p></ion-col>
+        <ion-col *ngIf="cert.Lado">Lado: <p>{{ cert.Lado }}</p></ion-col>
+        <ion-col *ngIf="cert.Livro">Livro: <p>{{ cert.Livro }}</p></ion-col>
+        <ion-col *ngIf="cert.Emissao">Data de Emissão: <p>{{ cert.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>

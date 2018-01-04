@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ENV } from './../../config/environment-dev';
 import * as md5 from 'md5';
 
 @Injectable()
 export class ConsultaServiceProvider {
     headers: HttpHeaders = new HttpHeaders();
-    private url: string = 'https://www.mitraonline.com.br/sorocabaWebService/index.php';
+    private url: string = ENV.URL_BASE + ENV.API_URI;
 
     constructor(public http: HttpClient) {
         this.headers.set('Content-Type', 'application/json');

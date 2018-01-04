@@ -1,3 +1,8 @@
+import { DependentesPage } from './../pages/dependentes/dependentes';
+import { ExtratoSocialPage } from './../pages/extrato-social/extrato-social';
+import { DocumentosPage } from './../pages/documentos/documentos';
+import { DocumentosSecundariosPage } from './../pages/documentos-secundarios/documentos-secundarios';
+import { DocumentosOutrosPage } from './../pages/documentos-outros/documentos-outros';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
@@ -23,17 +28,18 @@ export class MyApp {
     this.initializeApp();
 
     let docChildrens = [
-      new Pages('Prioritários', 'DocumentosPrioritariosPage'),
-      new Pages('Secundários', 'DocumentosSecundariosPage'),
-      new Pages('Outros', 'DocumentosOutrosPage')
-    ]
+      new Pages('Prioritários', DocumentosPage),
+      new Pages('Secundários', DocumentosSecundariosPage),
+      new Pages('Outros', DocumentosOutrosPage)
+    ];
 
     // used for an example of ngFor and navigation
     this.pages = [
       new Pages('Home', HomePage, 'home'),
-      new Pages('Documentos', null, 'document', null, docChildrens),
-      new Pages('Extrato Social', 'ExtratoSocialPage', 'analytics'),
-      new Pages('Dependentes', 'DependentesPage', 'people'),
+      // new Pages('Documentos', DocumentosP, 'document', null, docChildrens),
+      new Pages('Documentos', DocumentosPage, 'document'),
+      new Pages('Extrato Social', ExtratoSocialPage, 'analytics'),
+      new Pages('Dependentes', DependentesPage, 'people'),
       new Pages('Logout', null, 'exit', { methodName: 'logout', methodParam: null })
     ];
 
@@ -51,18 +57,18 @@ export class MyApp {
   openPage(page: Pages) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.menu.close()
+    this.menu.close();
     if (page.command)
-      this[page.command.methodName](page.command.methodParam)
+      this[page.command.methodName](page.command.methodParam);
     else if (page.component)
       this.nav.setRoot(page.component);
   }
 
   toggleLevel1(idx) {
     if (this.isLevel1Shown(idx)) {
-      this.showLevel1 = null
+      this.showLevel1 = null;
     } else {
-      this.showLevel1 = idx
+      this.showLevel1 = idx;
     }
   };
 
@@ -72,7 +78,7 @@ export class MyApp {
 
   public logout() {
     this.auth.logout().subscribe(succ => {
-      this.nav.setRoot(LoginPage)
+      this.nav.setRoot(LoginPage);
     });
   }
 }

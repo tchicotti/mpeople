@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { User } from './../../interfaces/auth/user';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class AuthServiceProvider {
   currentUser: User;
 
-  constructor(public consulta: ConsultaServiceProvider) {}
+  constructor(public consulta: ConsultaServiceProvider, private storage: NativeStorage) {}
 
   public login(credentials) {
     return this.consulta.login(credentials.usuario, credentials.password).then( (user) => {
@@ -28,6 +29,7 @@ export class AuthServiceProvider {
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;
+      this.storage.clear();
       observer.next(true);
       observer.complete();
     });

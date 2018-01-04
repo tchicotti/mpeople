@@ -1,3 +1,6 @@
+import { ExtratoSocialPage } from './../pages/extrato-social/extrato-social';
+import { DependentesPage } from './../pages/dependentes/dependentes';
+import { DocumentosPage } from './../pages/documentos/documentos';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -14,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ConsultaServiceProvider } from '../providers/consulta-service/consulta-service';
+import { DocumentosSecundariosPage } from '../pages/documentos-secundarios/documentos-secundarios';
+import { DocumentosOutrosPage } from '../pages/documentos-outros/documentos-outros';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 class StorageMock extends NativeStorage {
   items = [];
@@ -38,19 +44,30 @@ class StorageMock extends NativeStorage {
     LoginPage,
     MyApp,
     HomePage,
-    ConsultaPage
+    ConsultaPage,
+    DocumentosPage,
+    DocumentosSecundariosPage,
+    DocumentosOutrosPage,
+    DependentesPage,
+    ExtratoSocialPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     LoginPage,
     MyApp,
     HomePage,
-    ConsultaPage
+    ConsultaPage,
+    DocumentosPage,
+    DocumentosSecundariosPage,
+    DocumentosOutrosPage,
+    DependentesPage,
+    ExtratoSocialPage
   ],
   providers: [
     StatusBar,

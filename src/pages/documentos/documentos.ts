@@ -1,28 +1,23 @@
-import { ENV } from './../../config/environment-dev';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { ENV } from './../../config/environment-dev';
 import { User } from './../../interfaces/auth/user';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import * as QrCode from 'qrcode';
+import { IonicPage, NavController } from 'ionic-angular';
 
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-documentos',
+  templateUrl: 'documentos.html',
 })
-export class HomePage {
+export class DocumentosPage {
   user: User;
-  qrCode: string;
-  newCode: string;
   url = ENV.URL_BASE + ENV.FILES_URI;
 
 
   constructor(public navCtrl: NavController, private storage: NativeStorage) {
     this.storage.getItem('usuario').then(result => {
       this.user = result;
-      console.log(result);
-      this.qrCode = this.user.toString();
-      QrCode.toDataURL(this.user.toString(), (err, url) => this.newCode = url);
+      console.log(this.user)
     });
   }
-
 }
