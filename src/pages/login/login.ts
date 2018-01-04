@@ -24,7 +24,11 @@ export class LoginPage {
       this.storage.setItem('usuario', user);
       this.menu.enable(true);
       this.nav.setRoot(HomePage);
-    }).catch(err => this.showError(err) );
+    }).catch(err => {
+      console.log(err);
+
+      this.showError('Não foi possível realizar o login');
+    });
   }
 
   showLoading() {
