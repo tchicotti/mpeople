@@ -9,9 +9,9 @@
 
 <ion-content padding>
   <ion-row align-items-stretch>
-    <ion-col align-self-stretch>
-      <ion-item text-center>
-        <img src="{{ user.foto }}" class="img-max"/>
+    <ion-col align-self-stretch text-center *ngIf="user.dadosCompletos.dados.Foto">
+      <ion-item>
+        <img src="{{ baseImage + user.dadosCompletos.dados.Foto }}" class="img-max"/>
       </ion-item>
     </ion-col>
     <ion-col align-self-stretch>
@@ -23,25 +23,50 @@
   <ion-row>
     <ion-col>
       <ion-list>
+        <ion-list-header class='list-header'>Dados Básicos</ion-list-header>
         <ion-item>
-          <h1>{{ user.nome }}</h1>
-          <small>{{ user.email }}</small>
+          Nome:
+          <p *ngIf="user.dadosCompletos.dados.NomeSocial">{{ user.dadosCompletos.dados.NomeSocial }}</p>
+          <p *ngIf="!user.dadosCompletos.dados.NomeSocial">{{ user.dadosCompletos.dados.Nome }}</p>
         </ion-item>
-        <ion-item>
-          <span>
-            Data de Nascimento: <p>{{ user.dataNascimento }}</p>
-          </span>
+        <ion-item class="item">
+          <ion-row>
+            <ion-col col-6 *ngIf="user.dadosCompletos.dados.Sexo">
+                Sexo:
+                <p>{{ user.dadosCompletos.dados.Sexo }}</p>
+            </ion-col>
+            <ion-col col-6 *ngIf="user.dadosCompletos.dados.EstadoCivil">
+              Estado Civil:
+              <p>{{ user.dadosCompletos.dados.EstadoCivil }}</p>
+            </ion-col>
+            <ion-col col-6 *ngIf="user.dadosCompletos.dados.DataNascimento">
+                Data de Nascimento:
+                <p>{{ user.dadosCompletos.dados.DataNascimento }}</p>
+            </ion-col>
+            <ion-col col-6 *ngIf="user.dadosCompletos.dados.DataObito">
+                Data de Óbito:
+                <p>{{ user.dadosCompletos.dados.DataObito }}</p>
+            </ion-col>
+          </ion-row>
         </ion-item>
-        <ion-item>
-          <span>
-            Idade: <p>{{ calcularIdade(user.dataNascimento) }}</p>
-          </span>
+        <ion-item class="item" *ngIf="user.dadosCompletos.dados.NomeMae || user.dadosCompletos.dados.NomePai">
+            Filiação:
+            <p *ngIf="user.dadosCompletos.dados.NomeMae">{{ user.dadosCompletos.dados.NomeMae }}</p>
+            <p *ngIf="user.dadosCompletos.dados.NomePai">{{ user.dadosCompletos.dados.NomePai }}</p>
         </ion-item>
-        <ion-item>
-          <span>Filiação:
-            <p *ngIf="user.filiacao.filiacao1">{{ user.filiacao.filiacao1 }}</p>
-            <p *ngIf="user.filiacao.filiacao2">{{ user.filiacao.filiacao2 }}</p>
-          </span>
+        <ion-list-header class='list-header' *ngIf="user.dadosCompletos.dados.MunicipioNaturalidade || user.dadosCompletos.dados.Nacionalidade || user.dadosCompletos.dados.PaisNascionalidade">Naturalidade</ion-list-header>
+        <ion-item class="item" *ngIf="user.dadosCompletos.dados.Nacionalidade && user.dadosCompletos.dados.PaisNacionalidade">
+            Nacionalidade:
+            <p>{{ user.dadosCompletos.dados.Nacionalidade }} / {{ user.dadosCompletos.dados.PaisNacionalidade }}</p>
+        </ion-item>
+        <ion-item class="item" *ngIf="user.dadosCompletos.dados.MunicipioNaturalidade">
+            Município:
+            <p>{{ user.dadosCompletos.dados.MunicipioNaturalidade }}</p>
+        </ion-item>
+        <ion-list-header class='list-header' *ngIf="user.dadosCompletos.dados.Ocupacao">Ocupação</ion-list-header>
+        <ion-item class="item" *ngIf="user.dadosCompletos.dados.Ocupacao">
+            Profissão:
+            <p>{{ user.dadosCompletos.dados.Ocupacao }}</p>
         </ion-item>
       </ion-list>
     </ion-col>

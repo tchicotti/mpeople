@@ -13,7 +13,7 @@ import { SearchProvider } from '../providers/search/search';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { SoapServiceProvider } from '../providers/soap-service/soap-service';
+import { ConsultaServiceProvider } from '../providers/consulta-service/consulta-service';
 
 class StorageMock extends NativeStorage {
   items = [];
@@ -60,7 +60,7 @@ class StorageMock extends NativeStorage {
     HttpClientModule,
     AuthServiceProvider,
     {provide: NativeStorage, useClass: StorageMock},
-    SoapServiceProvider
+    ConsultaServiceProvider
   ]
 })
 export class AppModule {}

@@ -14,7 +14,7 @@ import { Pages } from '../interfaces/general/pages';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
   showLevel1 = null;
 
   pages: Array<Pages>;

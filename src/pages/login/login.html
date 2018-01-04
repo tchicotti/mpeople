@@ -10,8 +10,8 @@
           <ion-list>
 
             <ion-item>
-              <ion-label floating>Email</ion-label>
-              <ion-input type="text" #email name="email" [(ngModel)]="formLogin.email" required></ion-input>
+              <ion-label floating>Usuário</ion-label>
+              <ion-input type="text" #usuario name="usuario" [(ngModel)]="formLogin.usuario" required></ion-input>
             </ion-item>
 
             <ion-item>
@@ -20,15 +20,10 @@
             </ion-item>
 
             <ion-item>
-              <ion-label>Lembrar meus dados</ion-label>
-              <ion-checkbox #rememberMr name="remember-me" color="dark" [(ngModel)]="formLogin.rememberMe"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
               <ion-row>
-                <ion-col>
+                <!-- <ion-col>
                   <button full ion-button color="dark" clear>Esqueci minha senha</button>
-                </ion-col>
+                </ion-col> -->
                 <ion-col>
                   <button full ion-button type="submit" clear right>Acessar</button>
                 </ion-col>

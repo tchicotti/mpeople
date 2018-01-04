@@ -1,17 +1,18 @@
 export class User {
-  nome: string
-  filiacao: { filiacao1: string, filiacao2: string }
-  dataNascimento: string
-  email: string
-  sexo: string
-  foto: string
+  id: number;
+  nome: string;
+  descricao: string;
+  pessoaId: number;
+  dadosCompletos: any;
 
-  constructor(nome: string, email: string) {
-    this.nome  = nome
-    this.email = email
+  constructor(dados: any) {
+    this.id         = dados.Id;
+    this.nome       = dados.NomeCompleto;
+    this.descricao  = dados.Descricao;
+    this.pessoaId   = dados.PessoaId;
   }
 
   public toString = (): string => {
-    return `Nome:${this.nome}|Filiacao1:${this.filiacao.filiacao1}|Filiacao2:${this.filiacao.filiacao2}|DataNascimento:${this.dataNascimento}|Email:${this.email}|Sexo:${this.sexo}`;
+    return `Id:${this.id}|Nome:${this.nome}|Descricao:${this.descricao}|PessoaId:${this.pessoaId}`;
   }
 }
