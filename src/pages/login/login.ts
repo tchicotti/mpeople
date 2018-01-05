@@ -12,7 +12,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class LoginPage {
 
   loading: Loading;
-  formLogin = { usuario: 'chicotti.tafarel', password: '123456'};
+  formLogin = { usuario: '', password: ''};
 
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private menu: MenuController, private storage: NativeStorage) {
     this.menu.enable(false);
