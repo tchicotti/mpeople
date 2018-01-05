@@ -1,11 +1,15 @@
-page-home {
+page-contatos-enderecos {
     .img-max {
         max-width: 200px;
         max-height: 200px;
     }
-    ion-list-header.list-header {
+    ion-list-header.list-header, ion-card-header.list-header {
         background: #17b1f8;
         color: #ffffff;
+    }
+
+    ion-card-header.list-header {
+        border-bottom: 5px solid #0590d6;
     }
 
     .list-md .item-block .item-inner {

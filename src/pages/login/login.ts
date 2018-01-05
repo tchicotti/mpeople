@@ -21,7 +21,6 @@ export class LoginPage {
   public login() {
     this.showLoading();
     this.auth.login(this.formLogin).then(user => {
-      console.log(user);
       this.storage.setItem('usuario', user);
       this.menu.enable(true);
       this.nav.setRoot(HomePage);

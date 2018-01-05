@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Informações</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header class='list-header'>Contatos</ion-card-header>
+    <ion-list>
+      <ion-list-header class='list-header' *ngIf="contatos.EMAIL.length > 0">E-mail(s)</ion-list-header>
+      <ion-item class="item" *ngFor="let c of contatos.EMAIL">
+        <ion-row>
+          <ion-col *ngIf="c.Tipo">Tipo: <p>{{ c.Tipo }}</p></ion-col>
+          <ion-col *ngIf="c.Email">E-mail: <p>{{ c.Email }}</p></ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-list-header class='list-header' *ngIf="contatos.TELEFONE.length > 0">Telefone(s)</ion-list-header>
+      <ion-item class="item" *ngFor="let c of contatos.TELEFONE">
+        <ion-row>
+          <ion-col *ngIf="c.Tipo">Tipo: <p>{{ c.Tipo }}</p></ion-col>
+          <ion-col *ngIf="c.Ddd">Ddd: <p>{{ c.Ddd }}</p></ion-col>
+          <ion-col *ngIf="c.Numero">Número: <p>{{ c.Numero }}</p></ion-col>
+          <ion-col *ngIf="c.Ramal">Ramal: <p>{{ c.Ramal }}</p></ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="enderecos.length > 0">
+    <ion-card-header class='list-header'>Endereço(s)</ion-card-header>
+    <ion-list>
+      <ion-item class="item" *ngFor="let end of enderecos">
+        <ion-avatar item-start *ngIf="end.Imagem">
+          <img src="{{ url + end.Imagem }}" imageViewer>
+        </ion-avatar>
+        <ion-row>
+          <ion-col *ngIf="end.Tipo">Tipo: <p>{{ end.Tipo }}</p></ion-col>
+          <ion-col *ngIf="end.Municipio">Município: <p>{{ end.Municipio }}</p></ion-col>
+          <ion-col *ngIf="end.UF">Estado: <p>{{ end.UF }}</p></ion-col>
+          <ion-col *ngIf="end.Endereco">Endereço: <p>{{ end.Endereco }}</p></ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="necessidades.length > 0">
+      <ion-card-header class='list-header'>Necessidade(s)</ion-card-header>
+      <ion-list>
+        <ion-item class="item" *ngFor="let end of necessidades">
+          <ion-row>
+            <ion-col *ngIf="end.Tipo">Tipo: <p>{{ end.Tipo }}</p></ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+</ion-content>

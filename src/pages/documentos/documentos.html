@@ -3,30 +3,49 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Documentos de {{ user.nome }}</ion-title>
+    <ion-title>Documentos</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ion-list>
-    <ion-list-header class='list-header' *ngIf="user.dadosCompletos.documentos.CPF">CPF</ion-list-header>
-    <ion-item class="item">
-      <ion-avatar item-start *ngIf="user.dadosCompletos.documentos.CPF.Imagem">
-        <img src="{{ url + user.dadosCompletos.documentos.CPF.Imagem }}" imageViewer>
+    <ion-list-header class='list-header' *ngIf="documentos.CPF">CPF</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.CPF">
+      <ion-avatar item-start *ngIf="documentos.CPF.Imagem">
+        <img src="{{ url + documentos.CPF.Imagem }}" imageViewer>
       </ion-avatar>
       <ion-row>
-        <ion-col>Número: <p>{{ user.dadosCompletos.documentos.CPF.Numero }}</p></ion-col>
-        <ion-col>Data de Emissão: <p>{{ user.dadosCompletos.documentos.CPF.Emissao }}</p></ion-col>
+        <ion-col *ngIf="documentos.CPF.Numero">Número: <p>{{ documentos.CPF.Numero }}</p></ion-col>
+        <ion-col *ngIf="documentos.CPF.Emissao">Data de emissão: <p>{{ documentos.CPF.Emissao }}</p></ion-col>
       </ion-row>
     </ion-item>
-    <ion-list-header class='list-header' *ngIf="user.dadosCompletos.documentos.CERTIDAO.length > 0">Certidões</ion-list-header>
-    <ion-item class="item" *ngFor="let cert of user.dadosCompletos.documentos.CERTIDAO">
+    <ion-list-header class='list-header' *ngIf="documentos.RG">RG</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.RG">
+      <ion-avatar item-start *ngIf="documentos.RG.Imagem">
+        <img src="{{ url + documentos.RG.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+          <ion-col *ngIf="documentos.RG.Numero">Número: <p>{{ documentos.RG.Numero }}</p></ion-col>
+          <ion-col *ngIf="documentos.RG.Verificador">Dígito verificador: <p>{{ documentos.RG.Verificador }}</p></ion-col>
+          <ion-col *ngIf="documentos.RG.Estado">Estado: <p>{{ documentos.RG.Estado }}</p></ion-col>
+          <ion-col *ngIf="documentos.RG.Orgao">Órgão: <p>{{ documentos.RG.Orgao }}</p></ion-col>
+          <ion-col *ngIf="documentos.RG.Emissao">Data de emissão: <p>{{ documentos.RG.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.RA">RA</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.RA">
+      <ion-row>
+          <ion-col *ngIf="documentos.RA.Numero">Número: <p>{{ documentos.RA.Numero }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.CERTIDAO.length > 0">Certidões</ion-list-header>
+    <ion-item class="item" *ngFor="let cert of documentos.CERTIDAO">
       <ion-avatar item-start *ngIf="cert.Imagem">
         <img src="{{ url + cert.Imagem }}" imageViewer>
       </ion-avatar>
       <ion-row *ngIf="cert.Matricula">
         <ion-col *ngIf="cert.Tipo">Tipo: <p>{{ cert.Tipo }}</p></ion-col>
         <ion-col *ngIf="cert.Matricula">Matrícula: <p>{{ cert.Matricula }}</p></ion-col>
-        <ion-col *ngIf="cert.Emissao">Data de Emissão: <p>{{ cert.Emissao }}</p></ion-col>
+        <ion-col *ngIf="cert.Emissao">Data de emissão: <p>{{ cert.Emissao }}</p></ion-col>
       </ion-row>
       <ion-row *ngIf="!cert.Matricula">
         <ion-col *ngIf="cert.Tipo">Tipo: <p>{{ cert.Tipo }}</p></ion-col>
@@ -35,7 +54,55 @@
         <ion-col *ngIf="cert.Folha">Folha: <p>{{ cert.Folha }}</p></ion-col>
         <ion-col *ngIf="cert.Lado">Lado: <p>{{ cert.Lado }}</p></ion-col>
         <ion-col *ngIf="cert.Livro">Livro: <p>{{ cert.Livro }}</p></ion-col>
-        <ion-col *ngIf="cert.Emissao">Data de Emissão: <p>{{ cert.Emissao }}</p></ion-col>
+        <ion-col *ngIf="cert.Emissao">Data de emissão: <p>{{ cert.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.CNH">CNH</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.CNH">
+      <ion-avatar item-start *ngIf="documentos.CNH.Imagem">
+        <img src="{{ url + documentos.CNH.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+          <ion-col *ngIf="documentos.CNH.Numero">Número: <p>{{ documentos.CNH.Numero }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNH.Categoria">Categoria: <p>{{ documentos.CNH.Categoria }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNH.PrimeiraHabilitacao">Data da primeira habilitação: <p>{{ documentos.CNH.PrimeiraHabilitacao }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNH.Validade">Validade: <p>{{ documentos.CNH.Validade }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNH.Emissao">Data de emissão: <p>{{ documentos.CNH.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.TITULO_ELEITOR">Título de Eleitor</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.TITULO_ELEITOR">
+      <ion-avatar item-start *ngIf="documentos.TITULO_ELEITOR.Imagem">
+        <img src="{{ url + documentos.TITULO_ELEITOR.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+          <ion-col *ngIf="documentos.TITULO_ELEITOR.Numero">Número: <p>{{ documentos.TITULO_ELEITOR.Numero }}</p></ion-col>
+          <ion-col *ngIf="documentos.TITULO_ELEITOR.Zona">Zona: <p>{{ documentos.TITULO_ELEITOR.Zona }}</p></ion-col>
+          <ion-col *ngIf="documentos.TITULO_ELEITOR.Secao">Seção: <p>{{ documentos.TITULO_ELEITOR.Secao }}</p></ion-col>
+          <ion-col *ngIf="documentos.TITULO_ELEITOR.Municipio">Município: <p>{{ documentos.TITULO_ELEITOR.Municipio }}</p></ion-col>
+          <ion-col *ngIf="documentos.TITULO_ELEITOR.Emissao">Data de emissão: <p>{{ documentos.TITULO_ELEITOR.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.CNS">Cartão Nacional de Saúde</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.CNS">
+      <ion-avatar item-start *ngIf="documentos.CNS.Imagem">
+        <img src="{{ url + documentos.CNS.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+          <ion-col *ngIf="documentos.CNS.Numero">Número: <p>{{ documentos.CNS.Numero }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNS.Via">Via: <p>{{ documentos.CNS.Via }}</p></ion-col>
+          <ion-col *ngIf="documentos.CNS.Emissao">Data de emissão: <p>{{ documentos.CNS.Emissao }}</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-list-header class='list-header' *ngIf="documentos.CTPS">Cartão Nacional de Saúde</ion-list-header>
+    <ion-item class="item" *ngIf="documentos.CTPS">
+      <ion-avatar item-start *ngIf="documentos.CTPS.Imagem">
+        <img src="{{ url + documentos.CTPS.Imagem }}" imageViewer>
+      </ion-avatar>
+      <ion-row>
+          <ion-col *ngIf="documentos.CTPS.Numero">Número: <p>{{ documentos.CTPS.Numero }}</p></ion-col>
+          <ion-col *ngIf="documentos.CTPS.Serie">Série: <p>{{ documentos.CTPS.Serie }}</p></ion-col>
+          <ion-col *ngIf="documentos.CTPS.Emissao">Data de emissão: <p>{{ documentos.CTPS.Emissao }}</p></ion-col>
       </ion-row>
     </ion-item>
   </ion-list>

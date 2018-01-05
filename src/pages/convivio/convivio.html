@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Convívio</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngIf="convivios.length > 0">
+    <ion-card-header class='list-header'>Convíve com o total de {{ convivios.length }} pessoa(s)</ion-card-header>
+    <ion-list>
+      <ion-item class="item" *ngFor="let pes of convivios">
+        <ion-avatar item-start *ngIf="pes.Foto">
+          <img src="{{ url + pes.Foto }}" imageViewer>
+        </ion-avatar>
+        <ion-row>
+          <ion-col *ngIf="pes.Nome">Nome: <p>{{ pes.Nome }}</p></ion-col>
+          <ion-col *ngIf="pes.NomeMae">Nome da mãe: <p>{{ pes.NomeMae }}</p></ion-col>
+          <ion-col *ngIf="pes.DataNascimento">Data de nascimento: <p>{{ pes.DataNascimento }}</p></ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

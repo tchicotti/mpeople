@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Extrato</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <ion-card *ngIf="atendimentos.length > 0">
+      <ion-card-header class='list-header'>Atendimentos</ion-card-header>
+      <ion-list>
+        <ion-item class="item" *ngFor="let at of atendimentos">
+          <ion-row>
+            <ion-col *ngIf="at.Protocolo">Protocolo: <p>{{ at.Protocolo }}</p></ion-col>
+            <ion-col *ngIf="at.Reparticao">Repartição: <p>{{ at.Reparticao }}</p></ion-col>
+            <ion-col *ngIf="at.Servico">Serviço: <p>{{ at.Servico }}</p></ion-col>
+            <ion-col *ngIf="at.DataInicio">Data de início: <p>{{ at.DataInicio }}</p></ion-col>
+            <ion-col *ngIf="at.DataTermino">Data de término: <p>{{ at.DataTermino }}</p></ion-col>
+            <ion-col *ngIf="at.HoraInicio">Hora de início: <p>{{ at.HoraInicio }}</p></ion-col>
+            <ion-col *ngIf="at.HoraTermino">Hora de término: <p>{{ at.HoraTermino }}</p></ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </ion-content>

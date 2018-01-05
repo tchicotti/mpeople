@@ -1,8 +1,7 @@
-import { DependentesPage } from './../pages/dependentes/dependentes';
-import { ExtratoSocialPage } from './../pages/extrato-social/extrato-social';
+import { ConvivioPage } from './../pages/convivio/convivio';
+import { ExtratoServicosPage } from './../pages/extrato-servicos/extrato-servicos';
 import { DocumentosPage } from './../pages/documentos/documentos';
-import { DocumentosSecundariosPage } from './../pages/documentos-secundarios/documentos-secundarios';
-import { DocumentosOutrosPage } from './../pages/documentos-outros/documentos-outros';
+import { ContatosEnderecosPage } from './../pages/contatos-enderecos/contatos-enderecos';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
@@ -27,19 +26,20 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthServiceProvider, private menu: MenuController) {
     this.initializeApp();
 
-    let docChildrens = [
-      new Pages('Prioritários', DocumentosPage),
-      new Pages('Secundários', DocumentosSecundariosPage),
-      new Pages('Outros', DocumentosOutrosPage)
-    ];
+    // let docChildrens = [
+    //   new Pages('Prioritários', DocumentosPage),
+    //   new Pages('Secundários', DocumentosSecundariosPage),
+    //   new Pages('Outros', DocumentosOutrosPage)
+    // ];
 
     // used for an example of ngFor and navigation
     this.pages = [
       new Pages('Home', HomePage, 'home'),
       // new Pages('Documentos', DocumentosP, 'document', null, docChildrens),
       new Pages('Documentos', DocumentosPage, 'document'),
-      new Pages('Extrato Social', ExtratoSocialPage, 'analytics'),
-      new Pages('Dependentes', DependentesPage, 'people'),
+      new Pages('Informações', ContatosEnderecosPage, 'document'),
+      new Pages('Extrato de Serviços', ExtratoServicosPage, 'analytics'),
+      new Pages('Convívio', ConvivioPage, 'people'),
       new Pages('Logout', null, 'exit', { methodName: 'logout', methodParam: null })
     ];
 
